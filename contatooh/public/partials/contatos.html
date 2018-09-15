@@ -1,0 +1,24 @@
+<div class="jumbotron">
+    <h1 class="text-center">Bem vindo ao contatooh</h1>
+</div>
+<input type="search" placeholder="parte do nome" ng-model="filtro">
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <tr>
+            <th>NOME</th>
+            <th>EMAIL</th>
+            <th class="text-center">AÇÃO</th>
+        </tr>
+        <tr ng-repeat="contato in contatos | filter : filtro">
+            <td>
+                <a href="">{{contato.nome}}</a>
+            </td>
+            <td>{{contato.email}}</td>
+            <td class="text-center">
+                <button class="btn btn-warning" ng-click="remove(contato)">Remover</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<p>Contatos Cadastrados: {{contatos.length}}</p>

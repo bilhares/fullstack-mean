@@ -1,6 +1,6 @@
 var contatos = [
     {
-        _id: 1, nome: 'Contato	Exemplo	1',
+        _id: 1, nome: 'Contato	Exemplo	1abc',
         email: 'cont1@empresa.com.br'
     },
     {
@@ -27,6 +27,18 @@ module.exports = function () {
         contato ?
             res.json(contato) :
             res.status(404).send('Contato nao encontrado');
-    }
+    };
+    controller.removeContato = function (req, res) {
+        var id = req.params.id;
+        console.log('Removendo contato: ' + id);
+
+        contatos = contatos.filter(
+            function (contato) {
+                return contato._id != id;
+            }
+        );
+        res.status(204).end();
+
+    };
     return controller;
 };
