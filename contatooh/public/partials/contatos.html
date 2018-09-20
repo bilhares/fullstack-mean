@@ -1,24 +1,35 @@
 <div class="jumbotron">
     <h1 class="text-center">Bem vindo ao contatooh</h1>
 </div>
+<p ng-show="mensagem.texto">
+    {{mensagem.texto}}
+</p>
+<a ng-href="#/contato" class="btn	btn-primary">Novo Contato</a>
 <input type="search" placeholder="parte do nome" ng-model="filtro">
 
 <div class="table-responsive">
     <table class="table table-hover">
         <tr>
+            <th>ID</th>
             <th>NOME</th>
             <th>EMAIL</th>
             <th class="text-center">AÇÃO</th>
         </tr>
-        <tr ng-repeat="contato in contatos | filter : filtro">
+        <tr ng-repeat="contatoo in contatos | filter : filtro">
+            <td>{{contatoo._id}}</td>
             <td>
-                <a href="">{{contato.nome}}</a>
+                <a ng-href="#/contato/{{contatoo._id}}">{{contatoo.nome}}</a>
             </td>
-            <td>{{contato.email}}</td>
+            <td>{{contatoo.email}}</td>
             <td class="text-center">
-                <button class="btn btn-warning" ng-click="remove(contato)">Remover</button>
+                <button class="btn btn-warning" ng-click="remove(contatoo)">Remover</button>
             </td>
         </tr>
     </table>
 </div>
-<p>Contatos Cadastrados: {{contatos.length}}</p>
+<p ng-show="contatos.length">
+    Contatos cadastrados: {{contatos.length}}
+</p>
+<p class="text-info" ng-hide="contatos.length">
+    Não há contatos cadastrados
+</p>

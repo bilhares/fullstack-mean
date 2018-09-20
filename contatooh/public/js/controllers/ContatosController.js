@@ -1,8 +1,8 @@
-angular.module('contatooh').controller('ContatosController', function ($scope, $resource) {
+angular.module('contatooh').controller('ContatosController', function ($scope, Contato) {
     $scope.filtro = '';
     $scope.contatos = [];
-    var Contato = $resource('/contatos/:id');
-
+    $scope.mensagem = {texto: ''};
+    
     $scope.init = function () {
         buscaContatos();
     };
@@ -16,6 +16,9 @@ angular.module('contatooh').controller('ContatosController', function ($scope, $
             },
             function (erro) {
                 console.log(erro);
+                $scope.mensagem = {
+                    texto : 'Não deu cerrtooo'
+                }
 
             }
         );
@@ -24,6 +27,9 @@ angular.module('contatooh').controller('ContatosController', function ($scope, $
         Contato.delete({ id: contato._id }, buscaContatos,
             function (erro) {
                 console.log(erro);
+                $scope.mensagem = {
+                    texto : 'Não deu cerrtooo'
+                }
 
             });
     }
